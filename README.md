@@ -1,6 +1,9 @@
 This folder is a loose aggregation of optimization model code and plotting
 scripts related to the joint mapping and routing project from 2010--11.
 
+https://dl.acm.org/citation.cfm?id=2588611.2588649
+https://web.mit.edu/~alephtwo/www/papers/jointopt-princeton-tech-report.pdf
+
 The programs require the mosek optimization library (https://www.mosek.com/) to
 successfully compile and execute. A Linux-like environment (with gcc and python)
 will also likely be necessary.
