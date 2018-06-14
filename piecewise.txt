@@ -1,0 +1,16 @@
+For the numbers:
+
+   alpha = y(l)/cap(l);
+
+   if (alpha < 1/3)
+       out(l) = y(l);
+   elseif (alpha < 2/3)
+       out(l) = 3*y(l) - 2/3*cap(l);
+   elseif (alpha < 9/10)
+       out(l) = 10*y(l) - 16/3*cap(l);
+   elseif (alpha < 1)
+       out(l) = 70*y(l) - 178/3*cap(l);
+   elseif (alpha < 11/10)
+       out(l) = 500*y(l) - 1468/3*cap(l);
+   else out(l) = 5000*y(l) - 16318/3*cap(l);
+   end;

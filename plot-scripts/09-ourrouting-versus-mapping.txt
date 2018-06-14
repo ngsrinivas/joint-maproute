@@ -1,0 +1,7 @@
+set title "ISP costs per hour for cost-performance tradeoff routing"
+set ylabel "Costs in dollars per hour"
+set xlabel "Scale of offered load"
+set xrange[0.5:1.9]
+set terminal png
+set output "09-ourrouting-versus-mapping.png"
+plot "offered-load-results/our_routing_1.txt" using 1:4 with linespoints title "Round robin mapping", "offered-load-results/our_routing_2.txt" using 1:4 with linespoints title "Closest replica routing", "offered-load-results/our_routing_3.txt" using 1:4 with linespoints title "Closest replica with DC bandwidth capacities (donar-like)", "offered-load-results/our_routing_4.txt" using 1:4 with linespoints title "Routing-aware performance-optimized mapping", "offered-load-results/our_routing_5.txt" using 1:4 with linespoints title "Routing-aware cost-aware mapping (our scheme)"

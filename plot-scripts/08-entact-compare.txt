@@ -1,0 +1,7 @@
+set title "Comparison of entact+various mapping schemes versus our mapping+routing schemes"
+set ylabel "Weighted RTT excluding link utilization penalty (ms)"
+set xlabel "Time of the day (hour)"
+set terminal png
+set output "08-entact-compare.png"
+plot "comparison-entact/1.txt" using 1:2 with linespoints title "our mapping+routing scheme", "comparison-entact/3.txt" using 1:3 with linespoints title "entact+bandwidth-capped closest replica mapping", "comparison-entact/1.txt" using 1:3 with linespoints title "entact+round-robin mapping", "comparison-entact/2.txt" using 1:3 with linespoints title "entact+closest-replica mapping"
+

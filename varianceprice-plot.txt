@@ -1,0 +1,42 @@
+set pointsize 2
+set terminal postscript enhanced monochrome
+set output "/home/ngsrinivas/primal/starting-plots/52-pricepergb-pricevar.eps"
+set ylabel "Price ($/GB)" font "Helvetica,28"
+set xlabel "Variance as fraction of mean" font "Helvetica,28"
+set tics font "Helvetica,23"
+set xrange[0:0.6]
+set lmargin 10
+set bmargin 4
+set tmargin 2
+set rmargin 2.5
+plot "price-change/bprice-flex.txt" using 1:3 with lines title "{/Helvetica=24 perf-based}", "price-change/bprice-flex.txt" using 1:3:2:4 with errorbars title "", "price-change/bprice-flat.txt" using 1:3 with lines title "{/Helvetica=24 flat}", "price-change/bprice-flat.txt" using 1:3:2:4 with errorbars title ""
+
+set pointsize 2
+set terminal postscript enhanced monochrome
+set output "/home/ngsrinivas/primal/starting-plots/50-cperf-pricevar.eps"
+set ylabel "cperf latency (milliseconds)" font "Helvetica,28"
+set xlabel "Variance as fraction of mean" font "Helvetica,28"
+set tics font "Helvetica,23"
+set xrange[0:0.6]
+set yrange[50:300]
+set lmargin 10
+set bmargin 4
+set tmargin 2
+set rmargin 2.5
+plot "price-change/wperf-flex.txt" using 1:3 with lines title "{/Helvetica=24 perf-based}", "price-change/wperf-flex.txt" using 1:3:2:4 with errorbars title "", "price-change/wperf-flat.txt" using 1:3 with lines title "{/Helvetica=24 flat}", "price-change/wperf-flat.txt" using 1:3:2:4 with errorbars title ""
+
+set pointsize 2
+set terminal postscript enhanced monochrome
+set output "/home/ngsrinivas/primal/starting-plots/51-perf-pricevar.eps"
+set tics font "Helvetica,23"
+set ylabel "perf latency (milliseconds)" font "Helvetica,28"
+set xlabel "Variance as fraction of mean" font "Helvetica,28"
+set xrange[0:0.6]
+set yrange[50:300]
+set lmargin 10
+set bmargin 4
+set tmargin 2
+set rmargin 2.5
+plot "price-change/wrtt-flex.txt" using 1:3 with lines title "{/Helvetica=24 perf-based}", "price-change/wrtt-flex.txt" using 1:3:2:4 with errorbars title "", "price-change/wrtt-flat.txt" using 1:3 with lines title "{/Helvetica=24 flat}", "price-change/wrtt-flat.txt" using 1:3:2:4 with errorbars title ""
+
+

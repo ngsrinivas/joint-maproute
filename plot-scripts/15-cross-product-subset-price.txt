@@ -1,0 +1,8 @@
+set title "Total price per hour versus offered load"
+set ylabel "Price ($/hour)"
+set xlabel "Scale of offered load"
+set xrange[0.5:1.9]
+set terminal png
+set output "15-cross-product-subset-price.png"
+plot "offered-load-results/routing_lat_1.txt" using 1:4 with linespoints title "RR mapping + perf-opt routing", "offered-load-results/routing_lat_2.txt" using 1:4 with linespoints title "Closest replica mapping + perf-opt routing", "offered-load-results/routing_lat_3.txt" using 1:4 with linespoints title "donar-like mapping + perf-opt routing", "offered-load-results/our_routing_4.txt" using 1:4 with linespoints title "Rt-aware perf-opt mapping + our routing", "offered-load-results/routing_lat_4.txt" using 1:4 with linespoints title "Rt-aware perf-opt mapping + perf-opt routing", "offered-load-results/our_routing_5.txt" using 1:4 with linespoints title "our mapping + our routing"
+

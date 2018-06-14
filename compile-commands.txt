@@ -1,0 +1,8 @@
+gcc -m64 -g -I ~/mosek/6/tools/platform/linux64x86/h/ -L/home/ngsrinivas/mosek/6/tools/platform/linux64x86/bin -lmosek64 -pthread -lc -ldl -lm pricingchanges.c  our_routing.c our_mapping.c mapping_*.c routing_*.c helper.c inputs.c result-compute.c cdf.c -o pricing2
+
+gcc -m64 -g -I ~/mosek/6/tools/platform/linux64x86/h/ -L/home/ngsrinivas/mosek/6/tools/platform/linux64x86/bin -lmosek64 -pthread -lc -ldl -lm our_routing.c our_mapping.c mapping_*.c routing_*.c helper.c inputs.c result-compute.c loadchanges.c -o loadchanges
+
+gcc -m64 -g -I ~/mosek/6/tools/platform/linux64x86/h/ -L/home/ngsrinivas/mosek/6/tools/platform/linux64x86/bin -lmosek64 -pthread -lc -ldl -lm benefits-split.c our_routing.c our_mapping.c mapping_*.c routing_*.c helper.c inputs.c result-compute.c cdf.c -o benefits
+
+gcc -m64 -g -I ~/mosek/6/tools/platform/linux64x86/h/ -L/home/ngsrinivas/mosek/6/tools/platform/linux64x86/bin -lmosek64 -pthread -lc -ldl -lm optimality.c  our_routing.c our_mapping.c mapping_*.c routing_*.c helper.c inputs.c result-compute.c cdf.c -o optimality
+

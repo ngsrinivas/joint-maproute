@@ -1,0 +1,6 @@
+set title "Pareto-optimal curve of cost and weighted latency (including link utilization penalty)"
+set xlabel "Weighted RTT including link utilization penalty (ms)"
+set ylabel "Cost term in the objective (dollars per hour)"
+set terminal png
+set output "04-pareto-computedperf.png"
+plot "pareto-main/oct-8.txt" using 2:3 with linespoints title "Weighted RTT-cost pareto curve"

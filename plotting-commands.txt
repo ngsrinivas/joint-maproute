@@ -1,0 +1,77 @@
+# pareto-optimal curve with the performance from objective function
+
+~/primal/plot.py -f "postscript enhanced color" -o ~/primal/starting-plots/01-pareto-curve-optimized-objective.eps -x "Performance approximation from the objective (milliseconds)" -y "Costs (dollars per GB)"  pareto-main/oct-30.txt "Pareto-optimal tradeoff curve" "7:(0.041805 * \$3)" | gnuplot ; epstopdf ~/primal/starting-plots/01-pareto-curve-optimized-objective.eps --autorotate=All
+
+# curve showing "goodness of approximation" of linear term versus weighted term
+
+~/primal/plot.py -k "off" -f "postscript enhanced color" -o ~/primal/starting-plots/02-goodness-of-perf-approximation.eps -x "Performance approximation (milliseconds)" -y "Weighted performance (milliseconds)"  pareto-main/oct-30.txt "foo" "7:2" | gnuplot ; epstopdf ~/primal/starting-plots/02*.eps --autorotate=All
+
+# pareto-tradeoff with weighted performance value
+
+~/primal/plot.py -p 2 -f "postscript enhanced color" -o ~/primal/starting-plots/03-pareto-curve-weighted-performance.eps -x "cperf latency (milliseconds)" -y "Cost ($/GB)"  pareto-main/oct-30.txt "" "2:(0.041805 * \$3)" | gnuplot ; epstopdf ~/primal/starting-plots/03-*.eps --autorotate=All
+
+# objective latency variation as offered load scale changes
+
+~/primal/plot.py -f "postscript enhanced color" -o ~/primal/starting-plots/04-objperf-crossproductsubset.eps -x "Scaling of offered load" -y "Performance approximation (ms)" --xrange "[0.5:1.9]" --yrange "[50:400]" -k "bmargin horizontal width 1.2 font \"Helvetica,20\" height 1.4" --bmargin 8 offered-load-results/routing_lat_1.txt "RR + PO" "1:(\$6/4.978518e-06)" offered-load-results/routing_lat_2.txt "closest + PO" "1:(\$6/4.978518e-06)" offered-load-results/routing_lat_3.txt "BC-closest + PO" "1:(\$6/4.978518e-06)" offered-load-results/routing_lat_4.txt  "RA-PO + PO" "1:(\$6/4.978518e-06)" offered-load-results/our_routing_5.txt "Our mapping + routing" "1:((\$6-(\$4/3600))/4.978518e-06)" | gnuplot ; epstopdf ~/primal/starting-plots/04*.eps --autorotate=All
+
+###################################
+## performance-based schemes plots for scaling load
+
+# weighted congestion included latency (cperf) variation as offered load scale changes
+
+~/primal/plot.py -p 2 -f "postscript enhanced color" -o ~/primal/starting-plots/11-cperf-crossproductsubset.eps -x "Scaling of offered load" -y "cperf latency (ms)" --xrange "[0.5:1.80]" --yrange "[50:400]" -k "bmargin horizontal width 1.2 font \"Helvetica,20\" height 1.4" --bmargin 8 offered-load-results/routing_lat_1.txt "RR + PO" "1:3" offered-load-results/routing_lat_2.txt "closest + PO" "1:3" offered-load-results/capped_routing_6.txt "C-closest + C-PO" "1:3" offered-load-results/capped_routing_7.txt  "LC-closest + C-PO" "1:3" offered-load-results/routing_lat_4.txt "RA-PO + PO" "1:3" offered-load-results/our_routing_5.txt "our map + route" "1:3" | gnuplot ; epstopdf ~/primal/starting-plots/11*.eps --autorotate=All
+
+
+# wRTT latency (no congestion) variation as offered load scale changes
+
+~/primal/plot.py -p 2 -f "postscript enhanced color" -o ~/primal/starting-plots/12-perf-crossproductsubset.eps -x "Scaling of offered load" -y "perf latency (ms)" --xrange "[0.5:1.80]" --yrange "[50:400]" -k "bmargin horizontal width 1.2 font \"Helvetica,20\" height 1.4" --bmargin 8 offered-load-results/routing_lat_1.txt "RR + PO" "1:2" offered-load-results/routing_lat_2.txt "closest + PO" "1:2" offered-load-results/capped_routing_6.txt "C-closest + C-PO" "1:2" offered-load-results/capped_routing_7.txt  "LC-closest + C-PO" "1:2" offered-load-results/routing_lat_4.txt "RA-PO + PO" "1:2" offered-load-results/our_routing_5.txt "our map + route" "1:2" | gnuplot ; epstopdf ~/primal/starting-plots/12*.eps --autorotate=All
+
+
+# price in dollars per GB as offered load scale changes
+
+~/primal/plot.py -p 2 -f "postscript enhanced color" -o ~/primal/starting-plots/05-pricepergb-crossproductsubset.eps -x "Scaling of offered load" -y "Price ($/GB)" --xrange "[0.5:1.8]" -k "bmargin horizontal width 1.2 font \"Helvetica,20\" height 1.4" --bmargin 8 offered-load-results/routing_lat_1.txt "RR + PO" "1:(0.041805 * \$4 / \$1)" offered-load-results/routing_lat_2.txt "closest + PO" "1:(0.041805 * \$4 / \$1)" offered-load-results/capped_routing_6.txt "C-closest + C-PO" "1:(\$4 * 0.041805 / \$1)" offered-load-results/capped_routing_7.txt "LC-closest + C-PO" "1:(0.041805 * \$4 / \$1)" offered-load-results/routing_lat_4.txt  "RA-PO + PO" "1:(\$4 * 0.041805 / \$1)" offered-load-results/our_routing_5.txt "our map + route" "1:(\$4 * 0.041805 / \$1)" | gnuplot ; epstopdf ~/primal/starting-plots/05*.eps --autorotate=All
+
+###################################
+
+## cost-based schemes plots for scaling load
+
+# weighted congestion included latency (cperf) variation as offered load scale changes
+
+~/primal/plot.py -p 2 -f "postscript enhanced color" -o ~/primal/starting-plots/13-cperf-crossproductsubset.eps -x "Scaling of offered load" -y "cperf latency (ms)" --xrange "[0.5:1.80]" --yrange "[50:400]" -k "bmargin horizontal width 1.2 font \"Helvetica,20\" height 1.4" --bmargin 8 offered-load-results/our_routing_1.txt "RR + CA" "1:3" offered-load-results/our_routing_2.txt "closest + CA" "1:3" offered-load-results/capped_routing_7.txt "LC-closest + C-PO" "1:3" offered-load-results/routing_lat_4.txt  "RA + PO" "1:3" offered-load-results/our_routing_5.txt "our map + route" "1:3" | gnuplot ; epstopdf ~/primal/starting-plots/13*.eps --autorotate=All
+
+
+# wRTT latency (no congestion) variation as offered load scale changes
+
+~/primal/plot.py -p 2 -f "postscript enhanced color" -o ~/primal/starting-plots/14-perf-crossproductsubset.eps -x "Scaling of offered load" -y "perf latency (ms)" --xrange "[0.5:1.80]" --yrange "[50:400]" -k "bmargin horizontal width 1.2 font \"Helvetica,20\" height 1.4" --bmargin 8 offered-load-results/our_routing_1.txt "RR + CA" "1:2" offered-load-results/our_routing_2.txt "closest + CA" "1:2" offered-load-results/capped_routing_7.txt "LC-closest + C-PO" "1:2" offered-load-results/routing_lat_4.txt  "RA + PO" "1:2" offered-load-results/our_routing_5.txt "our map + route" "1:2" | gnuplot ; epstopdf ~/primal/starting-plots/14*.eps --autorotate=All
+
+# price in dollars per GB as offered load scale changes
+
+~/primal/plot.py -p 2 -f "postscript enhanced color" -o ~/primal/starting-plots/15-pricepergb-crossproductsubset.eps -x "Scaling of offered load" -y "Price ($/GB)" --xrange "[0.5:1.80]"  -k "bmargin horizontal width 1.2 font \"Helvetica,20\" height 1.4" --bmargin 8 offered-load-results/our_routing_1.txt "RR + CA" "1:(\$4 * 0.041805 / \$1)" offered-load-results/our_routing_2.txt "closest + CA" "1:(\$4 * 0.041805 / \$1)" offered-load-results/capped_routing_7.txt "LC-closest + C-PO" "1:(\$4 * 0.041805 / \$1)" offered-load-results/routing_lat_4.txt  "RA + PO" "1:(\$4 * 0.041805 / \$1)" offered-load-results/our_routing_5.txt "our map + route" "1:(\$4 * 0.041805 / \$1)" | gnuplot ; epstopdf ~/primal/starting-plots/15*.eps --autorotate=All
+
+###################################
+
+# beta-cdf in follow-start convergence (not cold start) including transient iterations
+# this graph will most likely not figure in the paper -- too trivial
+# 74% zeros and the remaining 1-s in the CDF.
+
+~/primal/plot.py -f "postscript enhanced color" -o ~/primal/starting-plots/06-betacdf.eps -x "Routing decision variable (beta)" -y "CDF of beta" -k "font \"Helvetica,22\"" beta-cdf/one-hour-traffic-instances-followstart.txt "CDF of beta" 1:2  | gnuplot ; epstopdf ~/primal/starting-plots/06*.eps --autorotate=All
+
+# performance of our scheme on the unmodified instances over 24 hours in the data
+# what's the performance measure? objective latency
+# can also try weighted latency to get some feel of how the scheme works.
+
+# 1. objective latency
+~/primal/plot.py -f "postscript enhanced color" -o ~/primal/starting-plots/07-objperfoptimality-over-time.eps -x "Hour of the day (GMT)" -y "Objective performance measure (ms)" --xrange "[0:24]" --yrange "[50:450]" -k "bmargin horizontal width 1.2 font \"Helvetica,20\" height 1.4" --bmargin 8 optimality-over-time/1-1.txt "RR + PO" 1:3 optimality-over-time/2-1.txt "closest + PO" 1:3 optimality-over-time/3-1.txt "BC-closest + PO" 1:3 optimality-over-time/4-1.txt "RA-PO + PO"  1:3 optimality-over-time/5-3.txt "Our mapping + routing" 1:3 | gnuplot ; epstopdf ~/primal/starting-plots/07*.eps --autorotate=All
+
+# 2. wRTT
+~/primal/plot.py -f "postscript enhanced color" -o ~/primal/starting-plots/08-wrttoptimality-over-time.eps -x "Hour of the day (GMT)" -y "wRTT (ms)" --xrange "[0:24]" --yrange "[50:450]" -k "bmargin horizontal width 1.2 font \"Helvetica,20\" height 1.4" --bmargin 8 optimality-over-time/1-1.txt "RR + PO" 1:5 optimality-over-time/2-1.txt "closest + PO" 1:5 optimality-over-time/3-1.txt "BC-closest + PO" 1:5 optimality-over-time/4-1.txt "RA-PO + PO"  1:5 optimality-over-time/5-3.txt "Our mapping + routing" 1:5 | gnuplot ; epstopdf ~/primal/starting-plots/08*.eps --autorotate=All
+
+# 3. weighted latency
+~/primal/plot.py -f "postscript enhanced color" -o ~/primal/starting-plots/09-wperfoptimality-over-time.eps -x "Hour of the day (GMT)" -y "Weighted performance (ms)" --xrange "[0:24]" --yrange "[50:450]" -k "bmargin horizontal width 1.2 font \"Helvetica,20\" height 1.4" --bmargin 8 optimality-over-time/1-1.txt "RR + PO" 1:4 optimality-over-time/2-1.txt "closest + PO" 1:4 optimality-over-time/3-1.txt "BC-closest + PO" 1:4 optimality-over-time/4-1.txt "RA-PO + PO"  1:4 optimality-over-time/5-3.txt "Our mapping + routing" 1:4 | gnuplot ; epstopdf ~/primal/starting-plots/09*.eps --autorotate=All
+
+# Cost of our scheme on the unmodified instances over the 24 hours in the data
+# might need to show some 95th percentile here: need to think about it
+# for now, just $/GB
+
+~/primal/plot.py -f "postscript enhanced color" -o ~/primal/starting-plots/10-bprice-over-time.eps -x "Hour of the day (GMT)" -y "Cost ($/GB)" --xrange "[0:24]" -k "bmargin horizontal width 1.2 font \"Helvetica,20\" height 1.4" --bmargin 8 optimality-over-time/1-1.txt "RR + PO" 1:7 optimality-over-time/2-1.txt "closest + PO" 1:7 optimality-over-time/3-1.txt "BC-closest + PO" 1:7 optimality-over-time/4-1.txt "RA-PO + PO"  1:7 optimality-over-time/5-3.txt "Our mapping + routing" 1:7 | gnuplot ; epstopdf ~/primal/starting-plots/10*.eps --autorotate=All
+

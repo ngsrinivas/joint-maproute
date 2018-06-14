@@ -1,0 +1,6 @@
+set title "Pareto-optimal curve of cost and performance approximation"
+set xlabel "Performance term in the objective (ms)"
+set ylabel "Cost term in the objective (dollars per hour)"
+set terminal png
+set output "03-pareto-optimizedperf.png"
+plot "pareto-main/oct-8.txt" using 7:3 with linespoints title "Pareto-curve from the objective function"

@@ -1,0 +1,8 @@
+set title "Latencies (including link penalties) for performance optimized routing"
+set ylabel "Latencies in ms"
+set xlabel "Scale of offered load"
+set xrange[0.5:1.9]
+set yrange[100:300]
+set terminal png
+set output "02-perfrouting-versus-mapping.png"
+plot "offered-load-results/routing_lat_1.txt" using 1:3 with linespoints title "Round robin mapping", "offered-load-results/routing_lat_2.txt" using 1:3 with linespoints title "Closest replica routing", "offered-load-results/routing_lat_3.txt" using 1:3 with linespoints title "Closest replica with DC bandwidth capacities (donar-like)", "offered-load-results/routing_lat_4.txt" using 1:3 with linespoints title "Routing-aware performance-optimized mapping", "offered-load-results/routing_lat_5.txt" using 1:3 with linespoints title "Routing-aware cost-aware mapping (our scheme)"

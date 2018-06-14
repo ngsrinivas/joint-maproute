@@ -1,0 +1,7 @@
+set title "Comparison of entact+closest replica mapping versus our scheme"
+set ylabel "Weighted RTT excluding link utilization penalty (ms)"
+set xlabel "Time of the day (hour)"
+set terminal png
+set output "06-entact-compare-closestreplica.png"
+plot "comparison-entact/2.txt" using 1:2 with linespoints title "Latency with our scheme", "comparison-entact/2.txt" using 1:3 with linespoints title "Latency with entact+closest replica mapping"
+
